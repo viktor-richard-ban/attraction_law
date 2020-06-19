@@ -99,18 +99,18 @@ TextureImporter:
       name: hero_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 48
-        width: 16
-        height: 16
+        width: 13
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8275b079ad54d2447ae7a5e5ad224501
+      spriteID: f25ead1c5ce88d64f9073caa87181a32
       vertices: []
       indices: 
       edges: []
@@ -119,18 +119,18 @@ TextureImporter:
       name: hero_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
+        x: 35
+        y: 19
+        width: 13
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77c1e27767afeeb44bed62c0c3a9a396
+      spriteID: c156151a60b7cb94297332dfe39fdff4
       vertices: []
       indices: 
       edges: []
@@ -139,18 +139,18 @@ TextureImporter:
       name: hero_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 48
-        width: 16
-        height: 16
+        width: 13
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9633c7d068ac114b922248f50cc38b8
+      spriteID: daba72a9ce2adbe41bbc5c35d5787b82
       vertices: []
       indices: 
       edges: []
@@ -159,18 +159,18 @@ TextureImporter:
       name: hero_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 32
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccf0952bdb04d38418963aed7c503364
+      spriteID: d9f7b47e7dd351449af9a64dbc15a29e
       vertices: []
       indices: 
       edges: []
@@ -179,18 +179,18 @@ TextureImporter:
       name: hero_4
       rect:
         serializedVersion: 2
-        x: 16
+        x: 34
         y: 32
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b9d76aba784d8c4b86c3cc4bfe8d65f
+      spriteID: 3fea4e8057712be408e842a5aa38f75e
       vertices: []
       indices: 
       edges: []
@@ -199,18 +199,18 @@ TextureImporter:
       name: hero_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
+        x: 1
+        y: 0
+        width: 13
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e3f1f99f8e316f4a819fc7e46dc54f4
+      spriteID: ac98f71fae0485b448860c726db58336
       vertices: []
       indices: 
       edges: []
@@ -219,18 +219,18 @@ TextureImporter:
       name: hero_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
+        x: 18
+        y: 17
+        width: 11
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1478c2746d5d96944a89bdd51791969f
+      spriteID: 72d7fc2085250ab478a2535ab90d29a1
       vertices: []
       indices: 
       edges: []
@@ -239,18 +239,18 @@ TextureImporter:
       name: hero_7
       rect:
         serializedVersion: 2
-        x: 16
+        x: 34
         y: 16
-        width: 16
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0cf2264f292d4f4a8dceadce7de93ec
+      spriteID: 1165ee4179753254ba3f5fe3d11ed1d6
       vertices: []
       indices: 
       edges: []
@@ -259,18 +259,18 @@ TextureImporter:
       name: hero_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
+        x: 17
+        y: 0
+        width: 14
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20f4f332a334a154080136d77f647cbb
+      spriteID: 7c4346595b28fa749968313fbee3cadb
       vertices: []
       indices: 
       edges: []
@@ -279,58 +279,18 @@ TextureImporter:
       name: hero_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 33
+        y: 1
+        width: 14
+        height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6ada0c5e55adfd48b858d2a16723b6d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero_10
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a1ec4c62d97e9f4981d657d0701299c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero_11
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23fa52a365f75d94e94b343494ce6592
+      spriteID: f66421d4bf80e3e4dad979301d441b7e
       vertices: []
       indices: 
       edges: []
@@ -338,7 +298,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f04fb1c9189a138478879b610c4a9260
     vertices: []
     indices: 
     edges: []
