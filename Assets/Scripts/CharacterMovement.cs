@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
     private GameObject _player;
     private Animator _animator;
+    private List<GameObject> _stickedObjects;
     public float speed = 0.1f;
+    private bool _isFacingRight = false;
 
     void Start()
     {
         _player = GameObject.Find("Player");
         _animator = GetComponent<Animator>();
+        _stickedObjects = new List<GameObject>();
     }
 
     void FixedUpdate()
@@ -30,18 +34,21 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            SetParamToTrueAndOthersToFalse("isMoveSideLeft");
+            if (_isFacingRight) Flip();
+            SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x -= speed;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            SetParamToTrueAndOthersToFalse("isMoveSideRight");
+            if (!_isFacingRight) Flip();
+            SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x += speed;
         }
         else
         {
             SetParamToTrueAndOthersToFalse("isIdle");
         }
+
         _animator.enabled = true;
         _player.transform.position = playerPos;
     }
@@ -58,5 +65,41 @@ public class CharacterMovement : MonoBehaviour
                 _animator.SetBool(param.name, false);
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("WoodThing"))
+        {
+            other.transform.SetParent(_player.transform);
+            _stickedObjects.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("ResetBush"))
+        {
+            RemoveStickedObjects();
+        }
+    }
+
+    private void RemoveStickedObjects()
+    {
+        Debug.Log(_stickedObjects.Count);
+        foreach (GameObject gameObject in _stickedObjects)
+        {
+            gameObject.transform.SetParent(null);
+        }
+
+        _stickedObjects.Clear();
+    }
+
+    private void Flip()
+    {
+        _isFacingRight = !_isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
