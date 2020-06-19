@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -90,6 +89,7 @@ public class CharacterMovement : MonoBehaviour
         foreach (GameObject gameObject in _stickedObjects)
         {
             gameObject.transform.SetParent(null);
+            gameObject.GetComponent<DropMovement>().Drop();
         }
 
         _stickedObjects.Clear();

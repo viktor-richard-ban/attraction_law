@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using Random = System.Random;
 
@@ -9,8 +6,8 @@ public class DropMovement : MonoBehaviour
 {
     private Transform _transform;
     private Vector3 _target;
-    public float speed = 0.5f;
-    public int radius = 3;
+    public float speed = 2.5f;
+    public int radius = 100;
     public bool dropped = false;
 
     void Start()
@@ -23,7 +20,7 @@ public class DropMovement : MonoBehaviour
         if (dropped)
         {
             Vector3.MoveTowards(_transform.position, _target, speed);
-            
+
             if (Vector3.Distance(_transform.position, _target) < 0.5f)
                 dropped = false;
         }
@@ -31,10 +28,13 @@ public class DropMovement : MonoBehaviour
 
     public void Drop()
     {
+        Debug.Log("Dropped");
         int randomDegree = new Random().Next(0, 360);
         int randomRadius = new Random().Next(0, radius);
-        double y = Math.Sin(randomDegree) * randomRadius;
-        double x = Math.Cos(randomDegree) * randomRadius;
+        float y = (float) Math.Sin(randomDegree) * randomRadius;
+        float x = (float) Math.Cos(randomDegree) * randomRadius;
+        _target = new Vector3(x, y, _transform.position.z);
+        Debug.Log(_target.ToString());
         dropped = true;
     }
 }
