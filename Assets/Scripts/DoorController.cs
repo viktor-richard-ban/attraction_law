@@ -18,7 +18,7 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame .)
     void Update()
     {
-        if (!firstLever.active && secondLever.active && !thirdLever.active && !fourthLever.active)
+        if (firstLever.GetComponent<LeverController>().isOn && !secondLever.GetComponent<LeverController>().isOn && thirdLever.GetComponent<LeverController>().isOn && fourthLever.GetComponent<LeverController>().isOn)
         {
             canOpen = true;
         }

@@ -23,8 +23,6 @@ public class PlayerObject : MonoBehaviour
             keyCounter-=1;
             this.canOpen = false;
         }
-
-        Debug.Log(keyCounter);
     }
 
     void OnCollisionEnter2D(Collision2D col)
