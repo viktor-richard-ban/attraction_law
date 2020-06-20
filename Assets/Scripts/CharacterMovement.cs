@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -7,7 +8,9 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     private List<GameObject> _stickedObjects;
     public float speed = 0.1f;
+    public float radius = 1.2f;
     private bool _isFacingRight = false;
+    private long lastSneeze;
 
     void Start()
     {
@@ -18,6 +21,11 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_animator.GetBool("isSneeze") 
+            && (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) - lastSneeze < 1000)
+            return;
+        
+        CheckStickedObjects();
         Vector3 playerPos = _player.transform.position;
 
         _animator.enabled = false;
@@ -64,6 +72,8 @@ public class CharacterMovement : MonoBehaviour
                 _animator.SetBool(param.name, false);
             }
         }
+
+        _animator.Update(0f);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -79,13 +89,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ResetBush"))
         {
+            SetParamToTrueAndOthersToFalse("isSneeze");
+            lastSneeze = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             RemoveStickedObjects();
         }
     }
 
     private void RemoveStickedObjects()
     {
-        Debug.Log(_stickedObjects.Count);
         foreach (GameObject gameObject in _stickedObjects)
         {
             gameObject.transform.SetParent(null);
@@ -97,9 +108,32 @@ public class CharacterMovement : MonoBehaviour
 
     private void Flip()
     {
+        foreach (var stickedObject in _stickedObjects)
+        {
+            stickedObject.transform.SetParent(null);
+        }
+
         _isFacingRight = !_isFacingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+        
+        foreach (var stickedObject in _stickedObjects)
+        {
+            stickedObject.transform.SetParent(_player.transform);
+        }
+    }
+
+    private void CheckStickedObjects()
+    {
+        for(int i = 0; i < _stickedObjects.Count; i++)
+        {
+            float distance = Vector3.Distance(_stickedObjects[i].transform.position, _player.transform.position);
+            if (Math.Abs(distance) > radius)
+            {
+                _stickedObjects[i].transform.SetParent(null);
+                _stickedObjects.RemoveAt(i);
+            }
+        }
     }
 }

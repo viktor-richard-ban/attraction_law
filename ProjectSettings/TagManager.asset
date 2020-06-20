@@ -6,6 +6,8 @@ TagManager:
   tags:
   - WoodThing
   - ResetBush
+  - PlayButton
+  - CreditButton
   layers:
   - Default
   - TransparentFX
