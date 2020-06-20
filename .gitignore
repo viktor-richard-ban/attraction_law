@@ -2,7 +2,7 @@ Temp
 obj
 Build
 Builds
-/Library
+Library
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*
