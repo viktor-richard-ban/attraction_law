@@ -8,6 +8,7 @@ TagManager:
   - ResetBush
   - PlayButton
   - CreditButton
+  - Fairy
   layers:
   - Default
   - TransparentFX
