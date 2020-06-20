@@ -136,4 +136,9 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
+
+    public int GetNumberOfStickedObjects()
+    {
+        return _stickedObjects.Count;
+    }
 }

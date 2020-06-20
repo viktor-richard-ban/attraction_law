@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\LeverController.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerObject.cs" />
+    <Compile Include="Assets\Scripts\PressurePlateController.cs" />
     <Compile Include="Assets\Scripts\StickyBehavior.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/bvikt/Desktop/game_jam/attraction_law/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

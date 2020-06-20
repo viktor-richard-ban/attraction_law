@@ -4,40 +4,41 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public GameObject firstLever;
-    public GameObject secondLever;
-    public GameObject thirdLever;
-    public GameObject fourthLever;
-
-    public bool canOpen = false;
-    bool thereiam = false;
-
-    // Start is called before the first frame update
+    public GameObject[] levers;
+    public string pattern;
+    private GameObject _door;
     void Start()
     {
-
+        _door = GetComponent<GameObject>();
     }
 
-    // Update is called once per frame .)
-    void Update()
+    void FixedUpdate()
     {
-        if(!firstLever.active && secondLever.active && !thirdLever.active && !fourthLever.active){
-            canOpen = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && this.canOpen && this.thereiam)
+        if (pattern.Length != levers.Length)
         {
-            this.gameObject.SetActive(false);
+            Debug.LogError("There should be as many levers as the length of the pattern");
+            return;
         }
+
+        if (CheckPattern())
+        {
+            _door.SetActive(false);
+            return;
+        }
+        
+        _door.SetActive(true);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    bool CheckPattern()
     {
-        this.thereiam = true;
-    }
+        bool match = true;
+        for(int i = 0; i < pattern.Length; i++)
+        {
+            match &= (pattern[i] == '1' && levers[i].GetComponent<LeverController>().isOn)
+                     || (pattern[i] == '0' && !levers[i].GetComponent<LeverController>().isOn);
+            Debug.Log("Is Match? " + match);
+        }
 
-    void OnCollisionExit2D(Collision2D col)
-    {
-        this.thereiam = false;
+        return match;
     }
 }
