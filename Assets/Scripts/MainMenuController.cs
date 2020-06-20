@@ -23,7 +23,7 @@ public class MainMenuController : MonoBehaviour
     void onPlayButtonClick()
     {
         SceneManager.LoadScene(1);
-        Scene nextScene = SceneManager.GetSceneByName("Test1");
+        Scene nextScene = SceneManager.GetSceneByName("House");
         if (nextScene.isLoaded)
         {
             Scene active = SceneManager.GetActiveScene();
