@@ -4,29 +4,41 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public GameObject firstLever;
-    public GameObject secondLever;
-    public GameObject thirdLever;
-    public GameObject fourthLever;
-
-    public bool canOpen = false;
-
-    // Start is called before the first frame update
+    public GameObject[] levers;
+    public string pattern;
+    private GameObject _door;
     void Start()
     {
-
+        _door = GetComponent<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(!firstLever.active && secondLever.active && !thirdLever.active && !fourthLever.active){
-            canOpen = true;
+        if (pattern.Length != levers.Length)
+        {
+            Debug.LogError("There should be as many levers as the length of the pattern");
+            return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && this.canOpen)
+        if (CheckPattern())
         {
-            this.gameObject.SetActive(false);
+            _door.SetActive(false);
+            return;
         }
+        
+        _door.SetActive(true);
+    }
+
+    bool CheckPattern()
+    {
+        bool match = true;
+        for(int i = 0; i < pattern.Length; i++)
+        {
+            match &= (pattern[i] == '1' && levers[i].GetComponent<LeverController>().isOn)
+                     || (pattern[i] == '0' && !levers[i].GetComponent<LeverController>().isOn);
+            Debug.Log("Is Match? " + match);
+        }
+
+        return match;
     }
 }
