@@ -10,6 +10,7 @@ public class DoorController : MonoBehaviour
     public GameObject fourthLever;
 
     public bool canOpen = false;
+    bool thereiam = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +25,19 @@ public class DoorController : MonoBehaviour
             canOpen = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && this.canOpen)
+        if (Input.GetKeyDown(KeyCode.E) && this.canOpen && this.thereiam)
         {
             this.gameObject.SetActive(false);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        this.thereiam = true;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        this.thereiam = false;
     }
 }
