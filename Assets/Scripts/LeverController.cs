@@ -1,23 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LeverController : MonoBehaviour
 {
-    public GameObject otherLever;
-    public bool isDisabled;
+    public bool isOn = false;
+    private bool _canPull = false;
+    private Transform _lever;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        _lever = GetComponent<Transform>();
+    }
 
-        if(isDisabled) {
-            this.gameObject.SetActive(false);
-            otherLever.SetActive(true);
-        }else {
-            this.gameObject.SetActive(true);
-            otherLever.SetActive(false);
+    void FixedUpdate()
+    {
+        if (_canPull && Input.GetKeyDown(KeyCode.E))
+            isOn = !isOn;
+        if ((isOn && _lever.localScale.x > 0) || (!isOn && _lever.localScale.x < 0))
+        {
+            Vector3 theScale = _lever.localScale;
+            theScale.x *= -1;
+            _lever.localScale = theScale;
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collide with Player");
+            _canPull = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collide with Player");
+            _canPull = false;
+        }
+    }
 }
