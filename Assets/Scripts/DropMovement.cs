@@ -6,8 +6,8 @@ public class DropMovement : MonoBehaviour
 {
     private Transform _transform;
     private Vector3 _target;
-    public float speed = 2.5f;
-    public int radius = 100;
+    public float speed = 0.1f;
+    public int radius = 5;
     public bool dropped = false;
 
     void Start()
@@ -19,10 +19,10 @@ public class DropMovement : MonoBehaviour
     {
         if (dropped)
         {
-            Vector3.MoveTowards(_transform.position, _target, speed);
-
+            Vector3 newPos = Vector3.MoveTowards(_transform.position, _target, speed);
             if (Vector3.Distance(_transform.position, _target) < 0.5f)
                 dropped = false;
+            _transform.position = newPos;
         }
     }
 
@@ -33,8 +33,15 @@ public class DropMovement : MonoBehaviour
         int randomRadius = new Random().Next(0, radius);
         float y = (float) Math.Sin(randomDegree) * randomRadius;
         float x = (float) Math.Cos(randomDegree) * randomRadius;
-        _target = new Vector3(x, y, _transform.position.z);
+        
+        _target = new Vector3(_transform.position.x + x, _transform.position.y + y, _transform.position.z);
         Debug.Log(_target.ToString());
         dropped = true;
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+            dropped = false;
     }
 }
