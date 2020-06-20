@@ -8,6 +8,7 @@ TagManager:
   - CreditButton
   - ResetBush
   - WoodThing
+  - Fairy
   layers:
   - Default
   - TransparentFX
