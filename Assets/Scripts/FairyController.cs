@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FairyÍController : MonoBehaviour
+public class FairyController : MonoBehaviour
 {
     private Transform _target;
     private Transform _position;
     public float speed = 0.1f;
     private Animator _animator;
+
     void Start()
     {
         _position = GetComponent<Transform>();
