@@ -1,44 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public GameObject[] levers;
-    public string pattern;
-    private GameObject _door;
+    public GameObject firstLever;
+    public GameObject secondLever;
+    public GameObject thirdLever;
+    public GameObject fourthLever;
+
+    public bool canOpen = false;
+    bool thereiam = false;
+
+    // Start is called before the first frame update
     void Start()
     {
-        _door = GetComponent<GameObject>();
     }
 
-    void FixedUpdate()
+    // Update is called once per frame .)
+    void Update()
     {
-        if (pattern.Length != levers.Length)
+        if (!firstLever.active && secondLever.active && !thirdLever.active && !fourthLever.active)
         {
-            Debug.LogError("There should be as many levers as the length of the pattern");
-            return;
+            canOpen = true;
         }
 
-        if (CheckPattern())
+        if (Input.GetKeyDown(KeyCode.E) && this.canOpen && this.thereiam)
         {
-            _door.SetActive(false);
-            return;
+            this.gameObject.SetActive(false);
         }
-        
-        _door.SetActive(true);
     }
 
-    bool CheckPattern()
+    void OnCollisionEnter2D(Collision2D col)
     {
-        bool match = true;
-        for(int i = 0; i < pattern.Length; i++)
-        {
-            match &= (pattern[i] == '1' && levers[i].GetComponent<LeverController>().isOn)
-                     || (pattern[i] == '0' && !levers[i].GetComponent<LeverController>().isOn);
-            Debug.Log("Is Match? " + match);
-        }
+        this.thereiam = true;
+    }
 
-        return match;
+    void OnCollisionExit2D(Collision2D col)
+    {
+        this.thereiam = false;
     }
 }
