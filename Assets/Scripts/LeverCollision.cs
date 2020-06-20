@@ -6,7 +6,6 @@ public class LeverCollision : MonoBehaviour
 {
     public GameObject other;
     public bool canPull = false;
-    public LeverCollision otherLeverCollision;
 
     void Start() {
     }
@@ -21,10 +20,6 @@ public class LeverCollision : MonoBehaviour
     {
         Debug.Log("Exit");
         this.canPull = false;
-    }
-
-    void CanPull() {
-        canPull = true;
     }
 
     void Update() {
