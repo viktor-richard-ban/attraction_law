@@ -1,5 +1,5 @@
 Temp
-Obj/
+obj
 Build
 Builds
 Library
@@ -15,8 +15,8 @@ sysinfo.txt
 /*.csproj
 /*.pidb
 *.pidb.meta
-/*.suo
-/*.sln*
+*.suo
+*.sln*
 /*.user
 /*.unityproj
 /*.booproj
