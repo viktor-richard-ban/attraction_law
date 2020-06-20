@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\DropMovement.cs" />
     <Compile Include="Assets\Scripts\LeverCollision.cs" />
     <Compile Include="Assets\Scripts\LeverController.cs" />
+    <Compile Include="Assets\Scripts\PlayerObject.cs" />
     <Compile Include="Assets\Scripts\StickyBehavior.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/bvikt/Desktop/game_jam/attraction_law/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
