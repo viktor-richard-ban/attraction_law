@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WoodThing
   - ResetBush
+  - Lever
   layers:
   - Default
   - TransparentFX

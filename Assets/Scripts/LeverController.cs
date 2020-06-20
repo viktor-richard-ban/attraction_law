@@ -10,6 +10,7 @@ public class LeverController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if(isDisabled) {
             this.gameObject.SetActive(false);
             otherLever.SetActive(true);
