@@ -11,6 +11,8 @@ TagManager:
   - Fairy
   - Key
   - Target
+  - Rabbit
+  - TwoRoomDoor
   layers:
   - Default
   - TransparentFX
