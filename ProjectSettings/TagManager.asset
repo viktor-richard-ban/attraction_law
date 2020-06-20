@@ -3,11 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - WoodThing
-  - ResetBush
+  - Lever
   - PlayButton
   - CreditButton
+  - ResetBush
+  - WoodThing
   - Fairy
   layers:
   - Default
