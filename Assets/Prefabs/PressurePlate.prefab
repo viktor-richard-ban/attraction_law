@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3189456016585101408}
   - component: {fileID: 3189456016585101411}
   - component: {fileID: 3189456016585101410}
-  - component: {fileID: 3189456016585101405}
   m_Layer: 0
   m_Name: PressurePlate
   m_TagString: Door
@@ -107,17 +106,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.86696696, y: 0.8778089}
   m_EdgeRadius: 0
---- !u!114 &3189456016585101405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3189456016585101404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec1b7f4c4a4cca439bf5be7f0ae1486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: 0
-  isPressed: 0
