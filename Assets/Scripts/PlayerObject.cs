@@ -42,7 +42,7 @@ public class PlayerObject : MonoBehaviour
         }else if(col.gameObject.tag == "Door" && keyCounter>0) {
             this.canOpen = true;
             savedCollision = col;
-        }else if(col.gameObject.tag == "Door"){
+        }else if(col.gameObject.tag == "Door" || col.gameObject.tag == "PressureDoor"){
             doorHere = true;
         }
     }
