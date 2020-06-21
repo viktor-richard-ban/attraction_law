@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (PauseControl.paused) return;
+        
         if (_animator.GetBool("isSneeze")
             && (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) - lastSneeze < 1000)
             return;

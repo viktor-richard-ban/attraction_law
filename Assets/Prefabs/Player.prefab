@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5189575040717475831}
   - component: {fileID: 5189575040717475835}
   - component: {fileID: 191877854632541814}
+  - component: {fileID: 2891739467949759194}
   - component: {fileID: 2798727628518773980}
   - component: {fileID: 5189575040717475834}
   - component: {fileID: 8404974449380263454}
@@ -71,6 +72,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCounter: 0
+  lockSrc: {fileID: 0}
+  lockedDoor: {fileID: 0}
+--- !u!114 &2891739467949759194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189575040717475830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8526d75d7196b4d875edcfc1307d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2798727628518773980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +104,10 @@ MonoBehaviour:
   walkAudioSrc: {fileID: 0}
   sneezeAudioSrc: {fileID: 0}
   bushShakingAudioSrc: {fileID: 0}
+  barelBrake: {fileID: 0}
+  keyDoorDialog: {fileID: 0}
+  leverDoorDialog: {fileID: 0}
+  pressurePlateDoorDialog: {fileID: 0}
 --- !u!212 &5189575040717475834
 SpriteRenderer:
   m_ObjectHideFlags: 0
