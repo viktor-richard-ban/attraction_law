@@ -124,9 +124,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ResetBush"))
         {
-            for(int i=0; i<2; i++){
-                sneezeAudioSrc.Play();
-            }
+            sneezeAudioSrc.Play ();
+            sneezeAudioSrc.PlayDelayed(sneezeAudioSrc.clip.length);
+            sneezeAudioSrc.Play ();
+
             SetParamToTrueAndOthersToFalse("isSneeze");
             lastSneeze = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             RemoveStickedObjects();
