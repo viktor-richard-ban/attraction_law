@@ -10,7 +10,6 @@ public class FairyController : MonoBehaviour
     void Start()
     {
         _position = GetComponent<Transform>();
-        _target = GameObject.FindWithTag("Target").transform;
         _animator = GetComponent<Animator>();
     }
 
@@ -22,13 +21,12 @@ public class FairyController : MonoBehaviour
             _position.position = newPos;
             _animator.SetBool("reached", false);
             _animator.SetBool("isMoveSide", true);
-        }
-
-        if (Vector3.Distance(_position.position, _target.position) < 1.0f)
-        {
-            _animator.SetBool("reached", true);
-            _animator.SetBool("isMoveSide", false);
-            _target = null;
+            if (Vector3.Distance(_position.position, _target.position) < 1.0f)
+            {
+                _animator.SetBool("reached", true);
+                _animator.SetBool("isMoveSide", false);
+                _target = null;
+            }
         }
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private GameObject _player;
     private Animator _animator;
@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     public float radius = 1.2f;
     private bool _isFacingRight = false;
     private long lastSneeze;
+    public bool isSticky = true;
 
     void Start()
     {
@@ -79,7 +80,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("WoodThing"))
+        if (other.gameObject.CompareTag("WoodThing") && isSticky)
         {
             other.transform.SetParent(_player.transform);
             _stickedObjects.Add(other.gameObject);
