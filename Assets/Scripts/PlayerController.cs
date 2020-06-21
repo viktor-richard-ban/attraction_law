@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource walkAudioSrc;
     public AudioSource sneezeAudioSrc;
+    public AudioSource bushShakingAudioSrc;
 
     void Start()
     {
@@ -125,8 +126,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("ResetBush"))
         {
             sneezeAudioSrc.Play ();
-            sneezeAudioSrc.PlayDelayed(sneezeAudioSrc.clip.length);
-            sneezeAudioSrc.Play ();
+            bushShakingAudioSrc.Play();
 
             SetParamToTrueAndOthersToFalse("isSneeze");
             lastSneeze = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
