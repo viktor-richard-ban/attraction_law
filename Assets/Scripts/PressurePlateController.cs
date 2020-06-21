@@ -11,7 +11,7 @@ public class PressurePlateController : MonoBehaviour
         if (other.gameObject.CompareTag("Rabbit"))
             isPressed = true;
         if (other.gameObject.CompareTag("Player") &&
-            other.gameObject.GetComponent<PlayerController>().GetNumberOfStickedObjects() >= sensitivity)
+            other.gameObject.GetComponent<PlayerController>().GetNumberOfStickedObjects() >= sensitivity) {
             isPressed = true;
             door.gameObject.SetActive(false);
         }
