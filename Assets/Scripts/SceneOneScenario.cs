@@ -170,6 +170,8 @@ public class SceneOneScenario : MonoBehaviour
         if (sleep && other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player went to sleep!");
+            firstScript.SetActive(false);
+            secondScript.SetActive(false);
             fourthScript.SetActive(false);
             lastDialogShowedAt = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             fairy.SetActive(true);
