@@ -10,6 +10,8 @@ public class FairyDoorController : MonoBehaviour
     public GameObject rightTop;
     public GameObject rightBottom;
 
+    public AudioSource lockSrc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class FairyDoorController : MonoBehaviour
         if(leftTop.GetComponent<PressureCollector>().items == 3 &&
             leftBottom.GetComponent<PressureCollector>().items == 1 &&
             rightTop.GetComponent<PressureCollector>().items == 2 &&
-            rightBottom.GetComponent<PressureCollector>().items == 3) { this.gameObject.SetActive(false); }
+            rightBottom.GetComponent<PressureCollector>().items == 3) { this.gameObject.SetActive(false); lockSrc.Play(); }
             
     }
 }

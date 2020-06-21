@@ -7,6 +7,8 @@ public class DoorController : MonoBehaviour
     public GameObject thirdLever;
     public GameObject fourthLever;
 
+    public AudioSource lockSrc;
+
     public bool canOpen = false;
     bool thereiam = false;
 
@@ -26,6 +28,8 @@ public class DoorController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && this.canOpen && this.thereiam)
         {
             this.gameObject.SetActive(false);
+            lockSrc.Play();
+
         }
     }
 
