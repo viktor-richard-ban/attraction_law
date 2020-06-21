@@ -17,6 +17,8 @@ TagManager:
   - KeyDoorTrigger
   - LeverDoorTrigger
   - PressurePlateTrigger
+  - HiddenRoom
+  - MoveableWall
   layers:
   - Default
   - TransparentFX
