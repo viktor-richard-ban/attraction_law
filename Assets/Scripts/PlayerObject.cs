@@ -9,8 +9,10 @@ public class PlayerObject : MonoBehaviour
     bool canGet = false;
     bool canOpen = false;
     Collision2D savedCollision = null;
+    bool doorHere = false;
     
     public AudioSource lockSrc;
+    public AudioSource lockedDoor;
 
     // Update is called once per frame
     void Update()
@@ -25,17 +27,23 @@ public class PlayerObject : MonoBehaviour
             lockSrc.Play();
             keyCounter-=1;
             this.canOpen = false;
+        }else if(Input.GetKeyDown(KeyCode.E) && !this.canOpen && doorHere){
+            Debug.Log("asd");
+            lockedDoor.Play();
         }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log(col.gameObject.tag);
         if(col.gameObject.tag == "Key"){
             this.canGet = true;
             savedCollision = col;
         }else if(col.gameObject.tag == "Door" && keyCounter>0) {
             this.canOpen = true;
             savedCollision = col;
+        }else if(col.gameObject.tag == "Door"){
+            doorHere = true;
         }
     }
 
@@ -44,5 +52,6 @@ public class PlayerObject : MonoBehaviour
         savedCollision = null;
         this.canGet = false;
         this.canOpen = false;
+        doorHere = false;
     }
 }
