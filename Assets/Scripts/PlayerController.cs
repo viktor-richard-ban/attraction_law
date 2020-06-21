@@ -13,14 +13,14 @@ public class PlayerController : MonoBehaviour
     private long lastSneeze;
     public bool isSticky = true;
 
-    private AudioSource _audioSrc;
+    public AudioSource walkAudioSrc;
+    public AudioSource sneezeAudioSrc;
 
     void Start()
     {
         _player = GameObject.Find("Player");
         _animator = GetComponent<Animator>();
         _stickedObjects = new List<GameObject>();
-        _audioSrc = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -38,36 +38,36 @@ public class PlayerController : MonoBehaviour
         {
             SetParamToTrueAndOthersToFalse("isMoveAway");
             playerPos.y += speed;
-            if(!_audioSrc.isPlaying)
-                _audioSrc.Play();
+            if(!walkAudioSrc.isPlaying)
+                walkAudioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             SetParamToTrueAndOthersToFalse("isMoveForward");
             playerPos.y -= speed;
-            if(!_audioSrc.isPlaying)
-                _audioSrc.Play();
+            if(!walkAudioSrc.isPlaying)
+                walkAudioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.A))
         {
             if (_isFacingRight) Flip();
             SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x -= speed;
-            if(!_audioSrc.isPlaying)
-                _audioSrc.Play();
+            if(!walkAudioSrc.isPlaying)
+                walkAudioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             if (!_isFacingRight) Flip();
             SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x += speed;
-            if(!_audioSrc.isPlaying)
-                _audioSrc.Play();
+            if(!walkAudioSrc.isPlaying)
+                walkAudioSrc.Play();
         }
         else
         {
             SetParamToTrueAndOthersToFalse("isIdle");
-            _audioSrc.Stop();
+            walkAudioSrc.Stop();
         }
 
         _animator.enabled = true;
@@ -98,8 +98,10 @@ public class PlayerController : MonoBehaviour
             _stickedObjects.Add(other.gameObject);
             if(speed > 0.04f){
                 speed-=0.02f;
+                walkAudioSrc.pitch -= 0.16f;
             }else{
                 speed = 0.04f;
+                walkAudioSrc.pitch = 2.25f;
             }
         }
     }
@@ -110,8 +112,10 @@ public class PlayerController : MonoBehaviour
         {
             if(speed < 0.1f){
                 speed+=0.02f;
+                walkAudioSrc.pitch += 0.16f;
             }else{
                 speed = 0.1f;
+                walkAudioSrc.pitch = 3f;
             }
         }
     }
@@ -120,6 +124,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ResetBush"))
         {
+            for(int i=0; i<2; i++){
+                sneezeAudioSrc.Play();
+            }
             SetParamToTrueAndOthersToFalse("isSneeze");
             lastSneeze = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             RemoveStickedObjects();
