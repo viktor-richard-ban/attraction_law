@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
 public class SceneOneScenario : MonoBehaviour
@@ -21,6 +22,8 @@ public class SceneOneScenario : MonoBehaviour
     public GameObject target1;
     public GameObject target2;
     public GameObject target3;
+
+    public GameObject door;
 
     public GameObject camera;
     private long lastDialogShowedAt;
@@ -73,7 +76,7 @@ public class SceneOneScenario : MonoBehaviour
             secondScript.SetActive(false);
             thirdScript.SetActive(false);
             fourthScript.SetActive(false);
-            
+
             if (delta < 3000)
             {
                 fifthScript.SetActive(true);
@@ -109,10 +112,18 @@ public class SceneOneScenario : MonoBehaviour
             }
 
             if (Vector3.Distance(target1.transform.position, fairy.transform.position) < 1f)
+            {
                 fairy.GetComponent<FairyController>().SetTarget(target2);
+                door.SetActive(false);
+            }
+
 
             if (Vector3.Distance(target2.transform.position, fairy.transform.position) < 1f)
+            {
                 fairy.GetComponent<FairyController>().SetTarget(target3);
+                door.SetActive(true);
+            }
+
 
             if (Vector3.Distance(target3.transform.position, fairy.transform.position) < 1f)
             {
@@ -132,13 +143,23 @@ public class SceneOneScenario : MonoBehaviour
         if (isFairyLeft)
         {
             if (delta < 3000)
-            {
                 eightScript.SetActive(true);
-            }
+
 
             if (delta > 4000 && delta < 4100)
-            {
                 ninthScript.SetActive(true);
+
+
+            if (delta > 7000 && delta < 7100)
+            {
+                SceneManager.LoadScene(2);
+                Scene nextScene = SceneManager.GetSceneByName("House");
+                if (nextScene.isLoaded)
+                {
+                    Scene active = SceneManager.GetActiveScene();
+                    SceneManager.UnloadSceneAsync(active.buildIndex);
+                    SceneManager.SetActiveScene(nextScene);
+                }
             }
         }
     }

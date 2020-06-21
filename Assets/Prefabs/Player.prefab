@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5189575040717475831}
   - component: {fileID: 5189575040717475835}
+  - component: {fileID: 191877854632541814}
   - component: {fileID: 2798727628518773980}
   - component: {fileID: 5189575040717475834}
   - component: {fileID: 8404974449380263454}
@@ -57,6 +58,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &191877854632541814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189575040717475830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601aa2258a7c63c48bda4737bc79b255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCounter: 0
 --- !u!114 &2798727628518773980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +85,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   radius: 1.2
+  isSticky: 1
+  walkAudioSrc: {fileID: 0}
+  sneezeAudioSrc: {fileID: 0}
+  bushShakingAudioSrc: {fileID: 0}
 --- !u!212 &5189575040717475834
 SpriteRenderer:
   m_ObjectHideFlags: 0
