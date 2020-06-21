@@ -21,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (_animator.GetBool("isSneeze") 
             && (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) - lastSneeze < 1000)
             return;
@@ -82,6 +83,23 @@ public class CharacterMovement : MonoBehaviour
         {
             other.transform.SetParent(_player.transform);
             _stickedObjects.Add(other.gameObject);
+            if(speed > 0.04f){
+                speed-=0.02f;
+            }else{
+                speed = 0.04f;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("WoodThing"))
+        {
+            if(speed < 0.1f){
+                speed+=0.02f;
+            }else{
+                speed = 0.1f;
+            }
         }
     }
 
