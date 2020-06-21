@@ -6,6 +6,8 @@ public class PressurePlateController : MonoBehaviour
     public bool isPressed = false;
     public GameObject door;
 
+    public AudioSource lockSrc;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Rabbit"))
@@ -14,6 +16,7 @@ public class PressurePlateController : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GetNumberOfStickedObjects() >= sensitivity) {
             isPressed = true;
             door.gameObject.SetActive(false);
+            lockSrc.Play();
         }
     }
 

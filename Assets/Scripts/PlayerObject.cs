@@ -9,6 +9,7 @@ public class PlayerObject : MonoBehaviour
     bool canGet = false;
     bool canOpen = false;
     Collision2D savedCollision = null;
+    public AudioSource lockSrc;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +21,7 @@ public class PlayerObject : MonoBehaviour
             this.canGet = false;
         }else if(Input.GetKeyDown(KeyCode.E) && this.canOpen && savedCollision.gameObject.tag=="Door"){
             savedCollision.gameObject.SetActive(false);
+            lockSrc.Play();
             keyCounter-=1;
             this.canOpen = false;
         }
