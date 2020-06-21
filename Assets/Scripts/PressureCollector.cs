@@ -6,6 +6,8 @@ public class PressureCollector : MonoBehaviour
 {
 
     public int items = 0;
+    public AudioSource switchOn;
+    public AudioSource switchOff;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +22,13 @@ public class PressureCollector : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        switchOn.Play();
         items+=1;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
+        switchOff.Play();
         items-=1;
     }
 

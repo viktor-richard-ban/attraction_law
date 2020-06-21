@@ -7,9 +7,11 @@ public class PressurePlateController : MonoBehaviour
     public GameObject door;
 
     public AudioSource lockSrc;
+    public AudioSource switchEffect;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        switchEffect.Play();
         if (other.gameObject.CompareTag("Rabbit"))
             isPressed = true;
         if (other.gameObject.CompareTag("Player") &&
