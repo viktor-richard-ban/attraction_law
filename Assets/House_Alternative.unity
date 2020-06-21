@@ -40885,6 +40885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyCounter: 0
   lockSrc: {fileID: 372254961}
+  lockedDoor: {fileID: 0}
 --- !u!1001 &2067319734
 PrefabInstance:
   m_ObjectHideFlags: 0

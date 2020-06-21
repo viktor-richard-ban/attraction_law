@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     public AudioSource bushShakingAudioSrc;
     public AudioSource barelBrake;
 
+    public GameObject keyDoorDialog;
+    public GameObject leverDoorDialog;
+
+    private long leverDoorDialogShowedAt;
+    private long keyDoorDialogShowedAt;
+    private float offsetY = 2f;
+
     void Start()
     {
         _player = GameObject.Find("Player");
@@ -27,27 +34,27 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        if (_animator.GetBool("isSneeze") 
+        if (_animator.GetBool("isSneeze")
             && (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) - lastSneeze < 1000)
             return;
-        
+
         CheckStickedObjects();
         Vector3 playerPos = _player.transform.position;
+        long now = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
 
         _animator.enabled = false;
         if (Input.GetKey(KeyCode.W))
         {
             SetParamToTrueAndOthersToFalse("isMoveAway");
             playerPos.y += speed;
-            if(!walkAudioSrc.isPlaying)
+            if (!walkAudioSrc.isPlaying)
                 walkAudioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             SetParamToTrueAndOthersToFalse("isMoveForward");
             playerPos.y -= speed;
-            if(!walkAudioSrc.isPlaying)
+            if (!walkAudioSrc.isPlaying)
                 walkAudioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.A))
@@ -55,7 +62,7 @@ public class PlayerController : MonoBehaviour
             if (_isFacingRight) Flip();
             SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x -= speed;
-            if(!walkAudioSrc.isPlaying)
+            if (!walkAudioSrc.isPlaying)
                 walkAudioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.D))
@@ -63,7 +70,7 @@ public class PlayerController : MonoBehaviour
             if (!_isFacingRight) Flip();
             SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x += speed;
-            if(!walkAudioSrc.isPlaying)
+            if (!walkAudioSrc.isPlaying)
                 walkAudioSrc.Play();
         }
         else
@@ -74,6 +81,19 @@ public class PlayerController : MonoBehaviour
 
         _animator.enabled = true;
         _player.transform.position = playerPos;
+
+        if (keyDoorDialog != null && leverDoorDialog != null)
+        {
+            playerPos.y += offsetY;
+            keyDoorDialog.transform.position = playerPos;
+            leverDoorDialog.transform.position = playerPos;
+        }
+        
+        if (now - leverDoorDialogShowedAt > 2000)
+            leverDoorDialog.SetActive(false);
+        
+        if (now - keyDoorDialogShowedAt > 2000)
+            keyDoorDialog.SetActive(false);
     }
 
     private void SetParamToTrueAndOthersToFalse(string name)
@@ -98,13 +118,17 @@ public class PlayerController : MonoBehaviour
         {
             other.transform.SetParent(_player.transform);
             _stickedObjects.Add(other.gameObject);
-            if(speed > 0.04f){
-                speed-=0.02f;
+            if (speed > 0.04f)
+            {
+                speed -= 0.02f;
                 walkAudioSrc.pitch -= 0.16f;
-            }else{
+            }
+            else
+            {
                 speed = 0.04f;
                 walkAudioSrc.pitch = 2.25f;
             }
+
             barelBrake.Play();
         }
     }
@@ -113,10 +137,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WoodThing"))
         {
-            if(speed < 0.1f){
-                speed+=0.02f;
+            if (speed < 0.1f)
+            {
+                speed += 0.02f;
                 walkAudioSrc.pitch += 0.16f;
-            }else{
+            }
+            else
+            {
                 speed = 0.1f;
                 walkAudioSrc.pitch = 3f;
             }
@@ -127,12 +154,24 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ResetBush"))
         {
-            sneezeAudioSrc.Play ();
+            sneezeAudioSrc.Play();
             bushShakingAudioSrc.Play();
 
             SetParamToTrueAndOthersToFalse("isSneeze");
             lastSneeze = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             RemoveStickedObjects();
+        }
+
+        if (other.gameObject.CompareTag("LeverDoorTrigger"))
+        {
+            leverDoorDialogShowedAt = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            leverDoorDialog.SetActive(true);
+        }
+
+        if (other.gameObject.CompareTag("KeyDoorTrigger") && GetComponent<PlayerObject>().keyCounter == 0)
+        {
+            keyDoorDialogShowedAt = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            keyDoorDialog.SetActive(true);
         }
     }
 
@@ -158,7 +197,7 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-        
+
         foreach (var stickedObject in _stickedObjects)
         {
             stickedObject.transform.SetParent(_player.transform);
@@ -167,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckStickedObjects()
     {
-        for(int i = 0; i < _stickedObjects.Count; i++)
+        for (int i = 0; i < _stickedObjects.Count; i++)
         {
             float distance = Vector3.Distance(_stickedObjects[i].transform.position, _player.transform.position);
             if (Math.Abs(distance) > radius)

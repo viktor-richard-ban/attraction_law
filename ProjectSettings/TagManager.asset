@@ -14,6 +14,9 @@ TagManager:
   - Rabbit
   - TwoRoomDoor
   - Dialog
+  - KeyDoorTrigger
+  - LeverDoorTrigger
+  - PressurePlateTrigger
   layers:
   - Default
   - TransparentFX
