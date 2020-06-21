@@ -20,9 +20,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject keyDoorDialog;
     public GameObject leverDoorDialog;
+    public GameObject pressurePlateDoorDialog;
 
     private long leverDoorDialogShowedAt;
     private long keyDoorDialogShowedAt;
+    private long pressurePlateDoorDialogShowedAt;
     private float offsetY = 2f;
 
     void Start()
@@ -82,18 +84,22 @@ public class PlayerController : MonoBehaviour
         _animator.enabled = true;
         _player.transform.position = playerPos;
 
-        if (keyDoorDialog != null && leverDoorDialog != null)
+        if (keyDoorDialog != null && leverDoorDialog != null && pressurePlateDoorDialog != null)
         {
             playerPos.y += offsetY;
             keyDoorDialog.transform.position = playerPos;
             leverDoorDialog.transform.position = playerPos;
+            pressurePlateDoorDialog.transform.position = playerPos;
         }
-        
+
         if (now - leverDoorDialogShowedAt > 2000)
             leverDoorDialog.SetActive(false);
-        
+
         if (now - keyDoorDialogShowedAt > 2000)
             keyDoorDialog.SetActive(false);
+        
+        if (now - pressurePlateDoorDialogShowedAt > 2000)
+            pressurePlateDoorDialog.SetActive(false);
     }
 
     private void SetParamToTrueAndOthersToFalse(string name)
@@ -172,6 +178,12 @@ public class PlayerController : MonoBehaviour
         {
             keyDoorDialogShowedAt = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             keyDoorDialog.SetActive(true);
+        }
+
+        if (other.gameObject.CompareTag("PressurePlateTrigger"))
+        {
+            pressurePlateDoorDialogShowedAt = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            pressurePlateDoorDialog.SetActive(true);
         }
     }
 
