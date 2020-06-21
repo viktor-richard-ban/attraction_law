@@ -13,11 +13,14 @@ public class PlayerController : MonoBehaviour
     private long lastSneeze;
     public bool isSticky = true;
 
+    private AudioSource _audioSrc;
+
     void Start()
     {
         _player = GameObject.Find("Player");
         _animator = GetComponent<Animator>();
         _stickedObjects = new List<GameObject>();
+        _audioSrc = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -35,27 +38,36 @@ public class PlayerController : MonoBehaviour
         {
             SetParamToTrueAndOthersToFalse("isMoveAway");
             playerPos.y += speed;
+            if(!_audioSrc.isPlaying)
+                _audioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             SetParamToTrueAndOthersToFalse("isMoveForward");
             playerPos.y -= speed;
+            if(!_audioSrc.isPlaying)
+                _audioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.A))
         {
             if (_isFacingRight) Flip();
             SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x -= speed;
+            if(!_audioSrc.isPlaying)
+                _audioSrc.Play();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             if (!_isFacingRight) Flip();
             SetParamToTrueAndOthersToFalse("isMoveSide");
             playerPos.x += speed;
+            if(!_audioSrc.isPlaying)
+                _audioSrc.Play();
         }
         else
         {
             SetParamToTrueAndOthersToFalse("isIdle");
+            _audioSrc.Stop();
         }
 
         _animator.enabled = true;
