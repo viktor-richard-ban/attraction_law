@@ -9,6 +9,7 @@ public class PlayerObject : MonoBehaviour
     bool canGet = false;
     bool canOpen = false;
     Collision2D savedCollision = null;
+    
     public AudioSource lockSrc;
 
     // Update is called once per frame

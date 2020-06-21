@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource walkAudioSrc;
     public AudioSource sneezeAudioSrc;
     public AudioSource bushShakingAudioSrc;
+    public AudioSource barelBrake;
 
     void Start()
     {
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
                 speed = 0.04f;
                 walkAudioSrc.pitch = 2.25f;
             }
+            barelBrake.Play();
         }
     }
 
