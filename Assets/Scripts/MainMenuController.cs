@@ -7,16 +7,11 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     public Button playButton;
-    public Button creditButton;
     public Button quitButton;
 
     void Start()
     {
-        playButton = playButton.GetComponent<Button>();
-        creditButton = creditButton.GetComponent<Button>();
-
         playButton.onClick.AddListener(onPlayButtonClick);
-        creditButton.onClick.AddListener(onCreditButtonClick);
         quitButton.onClick.AddListener(onQuitButtonClick);
     }
 
@@ -30,11 +25,6 @@ public class MainMenuController : MonoBehaviour
             SceneManager.UnloadSceneAsync(active.buildIndex);
             SceneManager.SetActiveScene(nextScene);
         }
-    }
-
-    void onCreditButtonClick()
-    {
-        
     }
 
     void onQuitButtonClick()
